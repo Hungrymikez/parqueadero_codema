@@ -18,8 +18,24 @@ body{
 .fondo_color{
     background-color: #660000;
 }
+.iconito{
+    text-align: center;
+    font-size: 5rem;
+    color: #660000;
+}
 
+/* CARDS*/
+/* En tu archivo styles.css */
+.hover-card {
+    transition: all 0.3s ease; /* Suaviza la transición */
+}
 
+.hover-card:hover {
+    background-color: rgb(255, 255, 255); /* Color de fondo al hacer hover */
+    transform: translateY(-5px); /* Efecto de levantar ligeramente */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Sombra más pronunciada */
+    color: black;
+}
 
 /* PARTE DEL FOOTER*/
 footer{
@@ -30,5 +46,11 @@ footer{
 }
 .icono:hover{
     color: white;
+}
+
+/* VISAJE PARA EL DESBORDAMIENTO*/
+.carousel-inner img {
+    max-width: 100%;
+    height: auto;
 }
 
