@@ -26,7 +26,7 @@ const precios = {
 }) */
 
 
-    document.addEventListener('DOMContentLoaded', async function() {
+    document.addEventListener('DOMContentLoaded',  function() {
         // Cargar operadores desde API
         
         // Determinar qué página está activa
@@ -116,7 +116,7 @@ function actualizar_select_operador(){
     select.appendChild(option_defecto);
 
 
-    //Llenar con los meseros de la API
+
     datos.operadores.forEach(empleado =>{
         const option = document.createElement('option');
         option.value = empleado.id;
@@ -148,7 +148,7 @@ function registrar_vehiculo(){
     }
 
         // Verificar si la placa ya está registrada (sin salida)
-        const existe = datos.vehiculos.some(v => v.placa === placa && !v.horaSalida);
+        const existe = datos.vehiculos.find(v => v.placa === placa && !v.horaSalida);
         if (existe) {
             alert('🚨 Esta placa ya está en el parqueadero');
             return;
