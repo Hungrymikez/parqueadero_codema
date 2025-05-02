@@ -550,6 +550,6 @@ function borrar_historial() {
     }
 }
 
-
+//pepeganga
 
 /* localStorage.clear(); */
