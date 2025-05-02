@@ -233,6 +233,11 @@ function calcular_cobro(){
         alert('⚠️ Complete todos los campos: placa, hora salida y operador');
         return;
     }
+
+    if(vehiculo.fecha_entrada<hora_salida){
+        alert('⚠️ Complete todos los campos: placa, hora salida y operador');
+        return;
+    }
     
 
     //BUSCO EL CARRITO 
@@ -272,7 +277,7 @@ console.log("Fecha convertida:", new Date(document.getElementById("hora_salida")
     let diferencia_ms = salida-entrada;
     
     
-    let diferencia_horas = Math.ceil((diferencia_ms)/(1000 * 60 * 60));
+    let diferencia_horas = Math.ceil((diferencia_ms)/(1000 * 60 * 60));  // aqui divido la diferencia por los millones de milisegundos para calcular la diferencia de horas
     let total_pagar = diferencia_horas * precios[vehiculo.tipo_v.toLowerCase()];
 
 
