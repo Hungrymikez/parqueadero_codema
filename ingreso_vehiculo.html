@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+<!--     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+ -->    
 </head>
 <body class="d-flex flex-column min-vh-100"  data-bs-theme="dark" > <!-- la clase del body es para poner el footer al piso con bootstrap --->
     <header>
@@ -18,29 +18,30 @@
                 <a class="navbar-brand" href="index.html">
                     <img src="/img/visual_animado2.gif" class="logo_codema" alt="Logo de CODEMA ENTERTAINMENT" style="width: 110px;">
                 </a>
-                <h2><strong>CODEMA ENTERTAINMENT</strong></h2>
+                <h2><strong class="d-none d-md-inline">CODEMA ENTERTAINMENT</strong></h2>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse pb-1 justify-content-center" id="navbarNav"> <!--justify-content-end-->
+                <div class="collapse navbar-collapse pb-1 justify-content-center  d-lg-none" id="navbarNav"> <!--justify-content-end-->
                     
-<!--                     <ul class="navbar-nav">
+                    <ul class="navbar-nav d-lg-none">
                         <li class="nav-item text-center text-light">
-                            <a class="nav-link active" aria-current="page" href="index.html">Gestion de productos</a>
+                            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
                         </li>
                         <li class="nav-item text-center text-light">
-                            <a class="nav-link active" aria-current="page" href="modulo-nomina.html">Gestion de ventas</a>
+                            <a class="nav-link active" aria-current="page" href="ingreso_vehiculo.html">Ingreso de vehiculo</a>
                         </li>
                         <li class="nav-item text-center text-light">
-                            <a class="nav-link active" aria-current="page" href="factura.html">Empleados registrados</a>
+                            <a class="nav-link active" aria-current="page" href="salida_vehiculo.html">Salida de vehiculo</a>
                         </li>
                         <li class="nav-item text-center text-light">
-                            <a class="nav-link active" aria-current="page" href="factura_alterna.html"> Lista animales</a>
+                            <a class="nav-link active" aria-current="page" href="historial.html">Historial</a>
                         </li>
-                    </ul>  -->
+                    </ul> 
                 </div>
             </div>
         </nav>
+    </header>
     </header>
     <section>
 <!--         <div class="container-fluid">
@@ -78,53 +79,61 @@
         <div class="container-fluid ">
             <div class="row">
                 <div class="col-12">
-                    <h1 class="text-center text-light pb-3 pt-2"><strong>Entrada de vehiculo <i class="bi bi-truck-front-fill iconito"></i>
-                    </strong></h1>
+                    <h1 class="text-center text-light pb-3 pt-2"><strong class="d-none d-md-inline">Entrada de vehiculo</strong> 
+                        <i class="bi bi-truck-front-fill iconito"></i>
+                    </h1>
                 </div>
             </div>
             <br>
             <div class="row ">
-                <div class="col-6">
+                <div class="col-md-6 col-12">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6 ">
                             <label for="Dueño vehiculo" class="form-label"><i class="bi bi-people-fill"></i> Dueño del vehiculo</label>
                             <input type="text" class="form-control" id="usuario" placeholder="JOHN DOE">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6 ">
                             <label for="placa" class="form-label"><i class="bi bi-postcard-fill"></i> Placa</label>
                             <input type="text" class="form-control" id="placa" placeholder="ABC123">
                         </div>
-                        <div class="col-md-4">
+                    </div>
+                    
+                    <div class="row pt-2 pb-3">
+                        <div class="col-md-6 ">
                             <label for="placa" class="form-label"><i class="bi bi-car-front"></i> Marca del vehiculo</label>
                             <input type="text" class="form-control" id="marca" placeholder="BMW, AKT">
                         </div>
-                    </div>
-
-                    <div class="row pt-2 pb-3">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label for="tipo" class="form-label"><i class="bi bi-car-front"></i> Tipo de vehiculo</label>
                             <select class="form-select" id="tipo">
-                                <option value="carro">Carro</option>
-                                <option value="moto">Moto</option>
-                                <option value="bicicleta">Bicicleta</option>
+                                <option value="carro">Carro ($3000)</option>
+                                <option value="moto">Moto ($1500)</option>
+                                <option value="bicicleta">Bicicleta ($500)</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
+                    </div>
+                    <div class="row pt-2 pb-3">
+                        <div class="col-md-6">
                             <label for="tipo" class="form-label">Empleado a cargo</label>
                             <select id="empleados" class="form-select"><i class="bi bi-people-fill"></i> Seleccione el empleado a cargo</select>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label for="Fecha" class="form-label"><i class="bi bi-clock-fill"></i> Hora de entrada</label>
                             <input type="datetime-local" class="form-control" id="fecha" placeholder="00/00/0000">
                         </div>
                     </div>
+                    <div class="col text-center">
+                        <button id="botonsito" class="btn btn-outline-danger">Subir Vehiculo</button>
+
+                    </div>
+
 
                 </div>
-                <div class="col-6">
-                    <div class="row">
+                <div class="col-md-6 col-12">
+                    <div class="row table-responsive-lg">
                         <div class="col-12">
-                            <table   class="table table-dark table-striped">
-                                <thead>
+                            <table class="table table-dark table-striped">
+                                <thead  class="table-light">
                                     <tr>
                                         <th>Placa</th>
                                         <th>Marca</th>
@@ -147,13 +156,13 @@
 
             </div>
 
-            <div class="text-center">
-                <button id="botonsito" class="btn btn-outline-danger">Subir Vehiculo</button>
+            <div class="text-center pt-3 pb-3">
                 
                 
                 
-                <a href="index.html" class="btn btn-outline-success">VOLVER</a>
                 <a href="salida_vehiculo.html" class="btn btn-outline-warning">Retirar carro</a>
+                <a href="index.html" class="btn btn-outline-success">INCIO</a>
+                <a href="historial.html" class="btn btn-outline-primary">Historial</a>    
 
 
             </div>
@@ -183,143 +192,6 @@
 
 
 
-
-<!--     <section>  
-        <div class="container pt-4">
-            <div class="row">
-                <div class="col-6">
-                    <h3 class="text-center"><strong>AGREGAR PLATOS AL MENU</strong></h3>
-                    <div class="col">
-                        <label for="codigo_plato" class="form-label">Código Plato</label>
-                        <input type="number" class="form-control" id="codigo_plato">
-                    </div>
-                    <div class="col">
-                        <label for="nombre_plato" class="form-label">Nombre Plato</label>
-                        <input type="text" class="form-control" id="nombre_plato">
-                    </div>
-                    <div class="col">
-                        <label for="precio_plato" class="form-label">Precio del Plato ($)</label>
-                        <input type="number" class="form-control" id="precio_plato">
-                    </div>
-                    <div class="col-md-12 mt-3">
-                        <button id="btn_agregar_plato" class="btn btn-outline-success">
-                            Agregar plato
-                        </button>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <h3 class="text-center"><strong>MENU DE PLATOS</strong></h3>
-                    <table class="table table-hover table-info table-striped table-resposive">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Código</th>
-                                <th>Nombre</th>
-                                <th>Precio</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabla_platos">
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    REGISTRAR MESAS PARA EL NEGOCIO
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-6"> APARTADO REGISTRAR MESA 
-                    <h3 class="text-center"><strong>REGISTRAR MESAS</strong></h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="numero-mesa" class="form-label">Número de Mesa</label>
-                            <input type="number" class="form-control" id="numero_mesa">
-                        </div>
-                        <div class="col-md-6 d-flex align-items-end">
-                            <button id="btn_registrar_mesa" class="btn btn-outline-success">Registrar Mesa</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6"> APARTADO PAGAR MESA 
-                    <h3 class="text-center"><strong>PAGAR MESA</strong></h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="mesa-pagar" class="form-label">Mesa a Pagar</label>
-                            <select class="form-select" id="mesa_pagar"></select>
-                        </div>
-                        <div class="col-md-6 d-flex align-items-end">
-                            <button id="btn_pagar_mesa" class="btn btn-outline-warning">Pagar Mesa</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-    <section>
-        <div class="container pt-3 pb-3">
-            <h3 class="text-center"><strong>REGISTRAR VENTA</strong></h3>
-            <div class="row">
-                <div class="col-6">
-                    <div class="col">
-                        <label for="mesa-pedido" class="form-label">Mesa</label>
-                        <select class="form-select" id="mesa_pedido"></select>
-                    </div>
-                    <div class="col">
-                        <label for="plato-pedido" class="form-label">Plato</label>
-                        <select class="form-select" id="plato_pedido"></select>
-                    </div>
-                    <div class="col">
-                        <label for="mesero-pedido" class="form-label">Mesero</label>
-                        <select class="form-select" id="mesero_pedido"></select>
-                    </div>
-                    <div class="col">
-                        <label for="cantidad-pedido" class="form-label">Cantidad</label>
-                        <input type="number" class="form-control" id="cantidad_pedido" min="1" value="1">
-                    </div>
-                    <div class="col mt-3">
-                        <button id="btn_agregar_pedido" class="btn btn-outline-success">Agregar Pedido</button>
-                    </div>
-                </div>
-                <div class="col-6"> 
-                    <h3 class="text-center"><strong>CUENTAS POR MESA</strong></h3>
-                    <table class="table table-hover table-info table-striped table-resposive">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Mesa</th>
-                                <th>Detalle de Pedidos</th>
-                                <th>Total a Pagar</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabla_cuentas">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-        </div>
-    </section>
-    <section><TABLA DE LO VENDIDO POR EL MESERO
-        <div class="container pb-3">
-            <h3 class="text-center"><strong>Resumen de meseros</strong></h3>
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table table-hover table-info table-striped table-resposive">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Mesero</th>
-                                <th>Total Vendido</th>
-                                <th>Pedidos</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabla_meseros">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section> -->
 
 
 
@@ -354,8 +226,8 @@
 
     <!-- SCRIPTS -->    
     <script src="js/codigo_parqueo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="js/bootstrap.min.js"></script> 
+<!--     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ -->        <script src="js/bootstrap.min.js"></script> 
 
 </body>
 </html>

@@ -42,14 +42,17 @@ const precios = {
             // Vista de salida
             cargar_empleados_salida();
             select_placas_salida();
-            document.getElementById('boton_calcular').addEventListener('click', calcular_cobro);
+            document.getElementById('resultado-pago').style.display = 'none';
+
+/*             actualizar_tabla_historial();
+ */            document.getElementById('boton_calcular').addEventListener('click', calcular_cobro);
             document.getElementById('confirmar_salida').addEventListener('click', confirmar_salida);
         } 
         else if (path === 'historial.html') {
             // Vista de historial
             actualizar_tabla_historial();
-/*             document.getElementById('filtro-placa').addEventListener('input', filtrarHistorial);
-            document.getElementById('filtro-tipo').addEventListener('change', filtrarHistorial); */
+            document.getElementById('filtro_placa').addEventListener('input', filtar_historial);
+            document.getElementById('filtro_tipo').addEventListener('change', filtar_historial);
         }
     });
 
@@ -328,12 +331,13 @@ function confirmar_salida(){
     }); */
     datos.historial.push({
         usuario_historial: vehiculo.usuario,
-        placa_historial: vehiculo.placa_salida,
+        placa_his: vehiculo.placa,
         tipo_historial: vehiculo.tipo_v,
         fecha_entrada_historial: vehiculo.fecha_entrada,
         fecha_salida_historial: vehiculo.fecha_salida,
-        operador_historial: vehiculo.operador,
+        total_pagado: vehiculo.total_pagado,
 
+        operador_historial: vehiculo.operador,
         operador_entrada_his: vehiculo.operador,
         operador_salida_his: vehiculo.operador_salida
         
@@ -357,8 +361,8 @@ function confirmar_salida(){
 
 
     select_placas_salida();
-    actualizar_tabla_historial();
-
+/*     actualizar_tabla_historial();
+ */
 }
 
 
@@ -460,13 +464,18 @@ function actualizar_tabla_carros(){
 }
 
 
-function actualizar_tabla_historial(){
-    const tabla_1 = document.getElementById("tabla_carros_historial");
-    tabla_1.innerHTML= '';
+console.log("Estructura de datos.historial:", datos.historial);
+
+
+
+
+function actualizar_tabla_historial(filtro_placa='', filtro_tipo=''){
+    const tabla1 = document.getElementById("tabla_carros_historial");
+    tabla1.innerHTML= '';
     
     datos.historial
     .filter(registro => {
-        const placa_valida = registro.placa_historial.toLowerCase().includes(filtro_placa.toLowerCase());
+        const placa_valida = registro.placa_his.toLowerCase().includes(filtro_placa.toLowerCase());
         const tipo_valido = filtro_tipo === '' || registro.tipo_v === filtro_tipo;
         return placa_valida && tipo_valido;
     })
@@ -474,16 +483,16 @@ function actualizar_tabla_historial(){
         const fila = document.createElement("tr");
         fila.innerHTML= `
         <td>${registro.usuario_historial}</td>
-        <td>${registro.placa_historial}</td>
+        <td>${registro.placa_his}</td>
         <td>${registro.tipo_historial}</td>
         <td>${new Date(registro.fecha_entrada_historial).toLocaleString()}</td>
         <td>${new Date(registro.fecha_salida_historial).toLocaleString()}</td>
-        <td>${registro.operador_entrada_his}</td>
-        <td>${registro.operador_salida_his}</td>
-        <td>${registro.total_pagado.toLocaleString('es-CO')}</td>
+        <td>${registro.operador_entrada_his.nombre}</td>
+        <td>${registro.operador_salida_his.nombre}</td>
+        <td>$${registro.total_pagado.toLocaleString('es-CO')}</td>
         
         `;
-        tabla_1.appendChild(fila);
+        tabla1.appendChild(fila);
     })
 }
 
@@ -491,9 +500,9 @@ function actualizar_tabla_historial(){
 function filtar_historial(){
 
     const filtro_placa = document.getElementById("filtro_placa").value;
-    const filtro_tipo = document.getElementById("filtro_placa").value;
+    const filtro_tipo = document.getElementById("filtro_tipo").value;
 
-    actualizarTablaHistorial(filtro_placa, filtro_tipo);
+    actualizar_tabla_historial(filtro_placa, filtro_tipo);
 
 
 
@@ -502,8 +511,42 @@ function filtar_historial(){
 
 
 
+//este codigo es para borrar el local storage
+
+const boton_borrar_ls = document.getElementById("borrar_ls");
+const boton_borrar_historial = document.getElementById("borrar_historial");
 
 
+boton_borrar_ls.addEventListener("click",borrar_local);
+boton_borrar_historial.addEventListener("click",borrar_historial);
+
+
+
+
+function borrar_local() {
+
+    if(confirm("Mi hermano está seguro que desea borrar los datos del local storage ? esto no se puede volver a rehacer !")){
+        localStorage.clear();
+        // Actualizar los datos en memoria
+        datos.vehiculos = [];
+        datos.historial = [];
+        // Actualizar las tablas
+        actualizar_tabla_carros();
+        actualizar_tabla_historial();
+        alert('✅ Todos los datos han sido eliminados del almacenamiento local mi hermano');
+    }
+
+}
+
+function borrar_historial() {
+    // Borrar solo el historial del localStorage
+    if(confirm('⚠️ ¿Estás seguro de querer borrar TODO el historial? Esta acción no se puede deshacer.')) {
+        localStorage.removeItem('historial');
+        datos.historial = [];
+        actualizar_tabla_historial();
+        alert('✅ Historial eliminado correctamente');
+    }
+}
 
 
 
