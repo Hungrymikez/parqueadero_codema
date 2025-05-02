@@ -234,10 +234,7 @@ function calcular_cobro(){
         return;
     }
 
-    if(vehiculo.fecha_entrada<hora_salida){
-        alert('⚠️ Complete todos los campos: placa, hora salida y operador');
-        return;
-    }
+
     
 
     //BUSCO EL CARRITO 
